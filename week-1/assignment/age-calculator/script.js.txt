@@ -1,0 +1,21 @@
+function calculateAge() {
+  const input = document.getElementById("birthdate").value;
+  if (!input) {
+    document.getElementById("result").innerText = "Please select a date.";
+    return;
+  }
+
+  const dob = moment(input);
+  const today = moment();
+
+  const years = today.diff(dob, "years");
+  dob.add(years, "years");
+
+  const months = today.diff(dob, "months");
+  dob.add(months, "months");
+
+  const days = today.diff(dob, "days");
+
+  document.getElementById("result").innerText =
+    `You are ${years} years, ${months} months, and ${days} days old.`;
+}
