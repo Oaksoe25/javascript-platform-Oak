@@ -1,0 +1,11 @@
+{
+  "name": "week-5-modularization",
+  "version": "1.0.0",
+  "description": "Node.js modularization assignment with 4 modules and a main app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
