@@ -3,10 +3,23 @@ const path = require('path');
 const express = require('express');
 
 const app = express();                 // ← create app FIRST
-const PORT = process.env.PORT || 3000;
+// --- choose port safely ---
+let PORT = Number(process.env.PORT || 3000);
+
+// Avoid Railway container's reserved/busy port
+if (PORT === 8080) {
+  console.warn('8080 is busy in this environment → switching to 3000');
+  PORT = 3000;
+}
+
+// Debug logs to confirm what we use at runtime
+console.log('Startup → env.PORT =', process.env.PORT);
+console.log('Startup → final PORT used =', PORT);
+
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
+
 
 // --- middleware ---
 app.use(express.json());
