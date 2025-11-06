@@ -3,16 +3,16 @@ const path = require('path');
 const express = require('express');
 
 const app = express();                 // ← create app FIRST
-// --- choose port safely ---
+// Pick a port safely
 let PORT = Number(process.env.PORT || 3000);
 
-// Avoid Railway container's reserved/busy port
-if (PORT === 8080) {
-  console.warn('8080 is busy in this environment → switching to 3000');
-  PORT = 3000;
+// Avoid known busy ports in this env
+if (PORT === 8080 || PORT === 3000) {
+  console.warn(`${PORT} is busy in this environment → switching to 4321`);
+  PORT = 4321;
 }
 
-// Debug logs to confirm what we use at runtime
+// Debug logs
 console.log('Startup → env.PORT =', process.env.PORT);
 console.log('Startup → final PORT used =', PORT);
 
