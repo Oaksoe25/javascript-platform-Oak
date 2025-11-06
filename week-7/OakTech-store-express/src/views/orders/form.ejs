@@ -1,0 +1,26 @@
+<% layout('layouts/main') %>
+<h2>Create Order</h2>
+
+<form method="post" action="/orders/new" class="form">
+  <label>User
+    <select name="userId" required class="field">
+      <% users.forEach(u => { %>
+        <option value="<%= u.id %>"><%= u.name %> — <%= u.email %></option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Product
+    <select name="productId" required class="field">
+      <% products.forEach(p => { %>
+        <option value="<%= p.id %>"><%= p.name %> ($<%= p.price %>)</option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Quantity
+    <input type="number" name="qty" value="1" min="1" required class="field">
+  </label>
+
+  <button class="btn" type="submit">Create</button>
+</form>

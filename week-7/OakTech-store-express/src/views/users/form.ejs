@@ -1,0 +1,12 @@
+<% layout('layouts/main') %>
+<h2>Add User</h2>
+
+<form method="post" action="/users/new" class="form">
+  <label>Name
+    <input name="name" required>
+  </label>
+  <label>Email
+    <input type="email" name="email" required>
+  </label>
+  <button class="btn" type="submit">Save</button>
+</form>

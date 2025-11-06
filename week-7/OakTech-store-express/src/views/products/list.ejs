@@ -1,0 +1,17 @@
+<% layout('layouts/main') %>
+<h2>Products</h2>
+<a class="btn" href="/products/new">+ Add Product</a>
+
+<ul class="grid">
+  <% items.forEach(p => { 
+       const img = p.image ? ('/images/' + p.image) : ('/images/' + encodeURIComponent(p.name) + '.jpg');
+  %>
+    <li class="card">
+      <img src="<%= img %>" alt="<%= p.name %>" class="product-img"
+           onerror="this.onerror=null;this.src='/images/logo.png';">
+      <h3><a href="/product/<%= p.id %>"><%= p.name %></a></h3>
+      <p>$<%= p.price %> — Stock: <%= p.stock %></p>
+      <button class="btn add-to-cart" data-id="<%= p.id %>">Add to cart</button>
+    </li>
+  <% }) %>
+</ul>

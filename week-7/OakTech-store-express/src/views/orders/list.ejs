@@ -1,0 +1,10 @@
+<% layout('layouts/main') %>
+<h2>Orders</h2>
+<a class="btn" href="/orders/new">+ New Order</a>
+<ul class="list">
+  <% items.forEach(o => { %>
+    <li>
+      <strong>#<%= o.id %></strong> — User: <%= o.userId %> — Items: <%= o.items.length %> — Total: $<%= o.total %> — <%= o.status %>
+    </li>
+  <% }) %>
+</ul>

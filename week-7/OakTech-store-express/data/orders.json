@@ -1,0 +1,74 @@
+[
+  {
+    "id": "o1",
+    "userId": "u1",
+    "items": [
+      {
+        "productId": "p4",
+        "qty": 15
+      }
+    ],
+    "total": 12000,
+    "status": "PAID"
+  },
+  {
+    "id": "o2",
+    "userId": "u1",
+    "items": [
+      {
+        "productId": "p3",
+        "qty": 18
+      }
+    ],
+    "total": 12600,
+    "status": "PAID"
+  },
+  {
+    "id": "o3",
+    "userId": "u2",
+    "items": [
+      {
+        "productId": "p1",
+        "qty": 25
+      }
+    ],
+    "total": 37500,
+    "status": "PAID"
+  },
+  {
+    "id": "o4",
+    "userId": "u2",
+    "items": [
+      {
+        "productId": "p2",
+        "qty": 30
+      }
+    ],
+    "total": 42000,
+    "status": "PAID"
+  },
+  {
+    "id": "b7951769-37c8-498e-abd9-d699a0c7bb68",
+    "userId": "u1",
+    "items": [
+      {
+        "productId": "p2",
+        "qty": 1
+      }
+    ],
+    "total": 1400,
+    "status": "PAID"
+  },
+  {
+    "id": "6600bb62-705a-4d8c-809d-b994bbedff2c",
+    "userId": "u1",
+    "items": [
+      {
+        "productId": "17b149b5-54b5-42ac-9dd4-c689af655d71",
+        "qty": 1
+      }
+    ],
+    "total": 1300,
+    "status": "PAID"
+  }
+]

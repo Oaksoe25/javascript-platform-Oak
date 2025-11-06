@@ -1,0 +1,11 @@
+<% layout('layouts/main') %>
+<% const img = item.image ? ('/images/' + item.image) : ('/images/' + encodeURIComponent(item.name) + '.jpg'); %>
+<article class="card">
+  <img src="<%= img %>" alt="<%= item.name %>" class="product-img"
+       onerror="this.onerror=null;this.src='/images/logo.png';">
+  <h2><%= item.name %></h2>
+  <p class="muted"><%= item.description %></p>
+  <p>Price: $<%= item.price %></p>
+  <p>Stock: <%= item.stock %></p>
+  <button class="btn add-to-cart" data-id="<%= item.id %>">Add to cart</button>
+</article>

@@ -1,0 +1,130 @@
+:root { --bg:#f0f0f0; --card:#f0f0f0; --text:#000000; --muted:#000000; --acc:#22d3ee; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial; background: var(--bg); color: var(--text); }
+.container { max-width: 960px; margin: 0 auto; padding: 1rem; }
+.nav { display:flex; align-items:center; justify-content:space-between; padding: .75rem 0; position: sticky; top:0; background: var(--bg); }
+.nav .brand { text-decoration:none; color: var(--text); font-weight:700; }
+.nav .links a { color: var(--muted); margin-left: 1rem; text-decoration: none; }
+.nav .links a:hover { color: var(--acc); }
+.hero { padding: 2rem 0; }
+.grid { display:grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); padding:0; list-style:none; }
+.card { background: var(--card); padding: 1rem; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,.25); }
+.btn {
+  background-color: #00a2ff;   /* Softer blue */
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  box-shadow: 0 4px 6px rgba(0, 162, 255, 0.2);
+}
+
+.btn:hover {
+  background-color: #008cdb;   /* Slightly darker on hover */
+  box-shadow: 0 6px 10px rgba(0, 140, 219, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 140, 219, 0.2);
+}
+
+.form {
+  display: grid;
+  gap: .75rem;
+  max-width: 420px;
+}
+
+/* 🔧 Form input styling */
+.form input,
+.form textarea,
+.form select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #555;
+  border-radius: 10px;
+  background-color: #ffffff !important; /* enforce white */
+  color: #000000 !important;             /* enforce black text */
+  outline: none;
+  transition: all 0.2s ease;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'><path fill='gray' d='M5 7l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+  padding-right: 40px;
+}
+
+/* When user focuses (clicks inside input) */
+.form input:focus,
+.form textarea:focus,
+.form select:focus {
+  border-color: #555;
+  background-color: #ffffff;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+}
+
+
+.muted { color: var(--muted); }
+.content { margin-top: .75rem; }
+.list { list-style: none; padding: 0; display: grid; gap: .5rem; }
+.logo {
+  height: 100px;
+  vertical-align: middle;
+  margin-right: 12px;
+  border-radius: 12px;
+}
+
+.product-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: .5rem;
+}
+.nav .brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.5rem; /* makes store name a bit bigger */
+}
+.form select {
+  width: 100%;
+  padding: .6rem .7rem;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0b1220;
+  color: var(--text);
+}
+body.products {
+  background-color: #000000;
+}
+
+body.users {
+  background-color: #14213d;
+}
+/* Product name links */
+.card h3 a {
+  color: #000000;          /* Purple (example) */
+  text-decoration: none;   /* Removes underline */
+  font-weight: 600;        /* Makes it slightly bold */
+  transition: color 0.2s ease;
+}
+
+.card h3 a:hover {
+  color: #00bfff;          /* Light blue on hover */
+  text-decoration: underline;
+}
