@@ -1,12 +1,26 @@
-<nav class="nav">
-  <a href="/" class="brand">
-    <img src="/images/logo.png" alt="Logo" class="logo">
-    OakTech Store
-  </a>
-
-  <div class="links">
-    <a href="/products">Products</a>
-    <a href="/users">Users</a>
-    <a href="/orders">Orders</a>
-  </div>
-</nav>
+<ul class="nav-links">
+  <li>
+    <a href="/products"
+       class="<%= (typeof page !== 'undefined' && page === 'products') ? 'active' : '' %>">
+      Products
+    </a>
+  </li>
+  <li>
+    <a href="/users"
+       class="<%= (typeof page !== 'undefined' && page === 'users') ? 'active' : '' %>">
+      Users
+    </a>
+  </li>
+  <li>
+    <a href="/orders"
+       class="<%= (typeof page !== 'undefined' && page === 'orders') ? 'active' : '' %>">
+      Orders
+    </a>
+  </li>
+  <li>
+    <a href="/products" class="nav-cart">
+      <span class="nav-cart-icon">🛒</span>
+      <span class="nav-cart-count">0</span>
+    </a>
+  </li>
+</ul>

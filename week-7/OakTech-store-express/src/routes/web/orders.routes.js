@@ -4,9 +4,14 @@ const products = require('../../controllers/products.controller');
 const users = require('../../controllers/users.controller');
 const router = express.Router();
 
-router.get('/orders', (req, res) =>
-  res.render('orders/list', { title: 'Orders', items: orders.list() })
-);
+router.get('/orders', (req, res) => {
+  res.render('orders/list', {
+    title: 'Orders',
+    page: 'orders',          // for active nav (optional but nice)
+    orders: orders.list()    // <-- key change: send as "orders"
+  });
+});
+
 
 // New order form (needs products + users to choose from)
 router.get('/orders/new', (req, res) => {

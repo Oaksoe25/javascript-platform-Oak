@@ -4,35 +4,39 @@
     "name": "ASUS Zenbook",
     "price": 1500,
     "stock": 120,
-    "description": "Premium,thin, OLED"
+    "description": "Premium,thin, OLED",
+    "image": "ASUS Zenbook.jpg"
   },
   {
     "id": "p2",
     "name": "Mac Book Pro",
     "price": 1400,
     "stock": 300,
-    "description": "Apple,power,pro"
+    "description": "Apple,power,pro",
+    "image": "Mac Book Pro.jpg"
   },
   {
     "id": "p3",
     "name": "Lenovo Thinkpad",
     "price": 700,
     "stock": 300,
-    "description": "Business, durable, keyboard"
+    "description": "Business, durable, keyboard",
+    "image": "Lenovo Thinkpad.jpg"
   },
   {
     "id": "p4",
     "name": "Msi Gaming",
     "price": 800,
     "stock": 300,
-    "description": "Gaming, CPU, Cooling"
+    "description": "Gaming, CPU, Cooling",
+    "image": "MSI Gaming.jpg"
   },
   {
     "id": "17b149b5-54b5-42ac-9dd4-c689af655d71",
     "name": "I Phone 17 Pro Max 256",
     "price": 1300,
     "stock": 10,
-    "description": "Apple's largest, most powerful Pro model featuring the A19 Pro chip, an upgraded 48MP telephoto camera with 8x optical-quality zoom, and enhanced cooling/battery life in a new aluminum design",
+    "description": "Apple's largest, most powerful Pro model featuring the A19 Pro chip...",
     "image": "1762373757629-photo_2025-11-06_03-15-44.jpg",
     "createdAt": "2025-11-05T20:15:57.632Z"
   }

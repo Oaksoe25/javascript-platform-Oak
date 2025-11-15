@@ -1,5 +1,19 @@
-<% layout('layouts/main') %>
-<section class="hero">
-  <h1>Welcome to OakTech Store</h1>
-  <p>Public HTML vs JSON API under <code>/api</code>.</p>
-</section>
+<main class="home-main">
+
+  <!-- HERO SECTION -->
+  <section class="home-hero">
+    <div class="home-hero-bg"></div>
+
+    <div class="home-hero-overlay">
+      <h1 class="hero-title">Give All You Need</h1>
+
+      <form method="GET" action="/products" class="hero-search-box">
+        <input type="text" name="q" placeholder="Search on OakTech" />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="hero-big-text">Shop</div>
+    </div>
+  </section>
+
+</main>

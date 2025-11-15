@@ -19,3 +19,12 @@ document.addEventListener('click', (e) => {
     addToCart(e.target.dataset.id, 1);
   }
 });
+const priceRange = document.getElementById('priceRange');
+const maxLabel = document.getElementById('maxPriceLabel');
+
+if (priceRange && maxLabel) {
+  priceRange.addEventListener('input', () => {
+    maxLabel.textContent = '$' + priceRange.value;
+  });
+}
+

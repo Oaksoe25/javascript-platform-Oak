@@ -1,10 +1,153 @@
-<% layout('layouts/main') %>
-<h2>Orders</h2>
-<a class="btn" href="/orders/new">+ New Order</a>
-<ul class="list">
-  <% items.forEach(o => { %>
-    <li>
-      <strong>#<%= o.id %></strong> — User: <%= o.userId %> — Items: <%= o.items.length %> — Total: $<%= o.total %> — <%= o.status %>
-    </li>
-  <% }) %>
-</ul>
+<%
+  // simple totals in EJS
+  const allOrders = Array.isArray(orders) ? orders : [];
+  let totalRevenue = 0;
+  let paidCount = 0;
+
+  allOrders.forEach(o => {
+    const t = Number(o.total || o.amount || 0);
+    totalRevenue += isNaN(t) ? 0 : t;
+
+    if ((o.status || 'PAID').toUpperCase() === 'PAID') {
+      paidCount++;
+    }
+  });
+%>
+
+<div class="page-shell">
+
+  <!-- TOP STATS -->
+  <section class="stats-row">
+    <div class="stat-card">
+      <p class="stat-label">Total Orders</p>
+      <p class="stat-value"><%= allOrders.length %></p>
+      <p class="stat-foot">All orders in the system</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Paid Orders</p>
+      <p class="stat-value"><%= paidCount %></p>
+      <p class="stat-foot">Completed / paid orders</p>
+    </div>
+
+    <div class="stat-card">
+      <p class="stat-label">Total Revenue</p>
+      <p class="stat-value">$<%= totalRevenue %></p>
+      <p class="stat-foot">Based on order totals</p>
+    </div>
+  </section>
+
+  <!-- MAIN PANEL -->
+  <div class="panel">
+
+    <!-- Header row -->
+    <div class="panel-header panel-header-users">
+      <div>
+        <h1 class="panel-title">Orders</h1>
+        <p class="panel-subtitle">Track customer purchases and payments.</p>
+      </div>
+
+      <div class="panel-header-right">
+        <form class="user-search-form" method="get" action="/orders">
+          <div class="input-pill">
+            <input
+              type="text"
+              name="q"
+              placeholder="Search order or user…"
+              value="<%= typeof q !== 'undefined' ? q : '' %>">
+          </div>
+
+          <select class="input-select" name="status">
+            <option value="">All</option>
+            <option value="PAID">Paid</option>
+            <option value="PENDING">Pending</option>
+            <option value="CANCELLED">Cancelled</option>
+          </select>
+        </form>
+
+        <a href="/orders/new" class="btn-primary">
+          + New Order
+        </a>
+      </div>
+    </div>
+
+    <!-- Orders table (reuse user-table styles) -->
+    <table class="user-table order-table">
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th class="th-center">Items</th>
+          <th class="th-center">Total</th>
+          <th class="th-center">Status</th>
+          <th class="th-right">Created</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% if (allOrders.length) { %>
+          <% allOrders.forEach(o => { %>
+            <%
+              const code = o.code || o.id;
+              const userLabel = o.userName || o.user || o.userId || '—';
+              const itemsCount = Array.isArray(o.items)
+                ? o.items.length
+                : (o.itemsCount || o.quantity || 1);
+              const total = o.total || o.amount || 0;
+              const status = (o.status || 'PAID').toUpperCase();
+              const created = o.createdAt || o.date || '-';
+            %>
+
+            <tr>
+              <!-- Order code -->
+              <td>
+                <div class="user-info">
+                  <div class="user-name">#<%= code %></div>
+                  <div class="user-id">Internal ID</div>
+                </div>
+              </td>
+
+              <!-- Customer -->
+              <td class="user-email">
+                <%= userLabel %>
+              </td>
+
+              <!-- Items -->
+              <td class="td-center">
+                <%= itemsCount %>
+              </td>
+
+              <!-- Total -->
+              <td class="td-center">
+                $<%= total %>
+              </td>
+
+              <!-- Status -->
+              <td class="td-center">
+                <% if (status === 'PAID') { %>
+                  <span class="pill pill-success">Paid</span>
+                <% } else if (status === 'PENDING') { %>
+                  <span class="pill pill-warning">Pending</span>
+                <% } else { %>
+                  <span class="pill pill-neutral"><%= status %></span>
+                <% } %>
+              </td>
+
+              <!-- Created date -->
+              <td class="td-right">
+                <%= created %>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="6" class="user-empty">
+              No orders yet. Click <strong>“+ New Order”</strong> to create one.
+            </td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

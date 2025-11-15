@@ -1,17 +1,212 @@
-<% layout('layouts/main') %>
-<h2>Products</h2>
-<a class="btn" href="/products/new">+ Add Product</a>
+<div class="shop-page">
 
-<ul class="grid">
-  <% items.forEach(p => { 
-       const img = p.image ? ('/images/' + p.image) : ('/images/' + encodeURIComponent(p.name) + '.jpg');
-  %>
-    <li class="card">
-      <img src="<%= img %>" alt="<%= p.name %>" class="product-img"
-           onerror="this.onerror=null;this.src='/images/logo.png';">
-      <h3><a href="/product/<%= p.id %>"><%= p.name %></a></h3>
-      <p>$<%= p.price %> — Stock: <%= p.stock %></p>
-      <button class="btn add-to-cart" data-id="<%= p.id %>">Add to cart</button>
-    </li>
-  <% }) %>
-</ul>
+  <!-- HERO / BANNER -->
+  <section class="shop-hero">
+    <div class="shop-hero-bg"></div>
+
+    <div class="shop-hero-content">
+      <div class="shop-hero-big-text">Shop</div>
+
+      <div class="shop-hero-inner">
+        <h1 class="shop-hero-title">Give All You Need</h1>
+
+        <form class="shop-search-bar" action="/products" method="get">
+          <input
+            type="text"
+            name="q"
+            placeholder="Search on OakTech"
+            class="shop-search-input">
+          <button type="submit" class="shop-search-button">Search</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN AREA: LEFT CATEGORY + RIGHT PRODUCTS -->
+  <main class="shop-main">
+
+    <!-- LEFT: CATEGORY / FILTERS -->
+    <aside class="shop-sidebar-left">
+      <h3 class="sidebar-heading">Category</h3>
+
+      <ul class="category-list">
+        <li class="category-item active">
+          <span>All Product</span>
+        </li>
+        <li class="category-item">
+          <span>Laptop</span>
+        </li>
+        <li class="category-item">
+          <span>Phone</span>
+        </li>
+        <li class="category-item">
+          <span>Accessories</span>
+        </li>
+        <li class="category-item">
+          <span>On Discount</span>
+        </li>
+      </ul>
+
+      <div class="sidebar-section">
+        <p class="sidebar-label">Price range</p>
+        <div class="price-range-row">
+          <span>$0</span>
+          <span id="maxPriceLabel">$2000</span>
+        </div>
+        <input
+          type="range"
+          id="priceRange"
+          min="0" max="2000" value="2000"
+          class="price-range-input">
+      </div>
+    </aside>
+
+    <!-- RIGHT: PRODUCTS GRID -->
+    <section class="shop-products-area">
+
+      <!-- TOP INFO ROW (showing + sort) -->
+      <div class="shop-top-row">
+        <p class="shop-results-text">
+          Showing 1–<%= products.length %> of <%= products.length %> results
+        </p>
+
+        <div class="shop-sort">
+          <label for="sort" class="shop-sort-label">Sort by</label>
+          <select id="sort" class="shop-sort-select">
+            <option value="default">Default</option>
+            <option value="price-asc">Price: low → high</option>
+            <option value="price-desc">Price: high → low</option>
+            <option value="name-asc">Name A–Z</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- PRODUCT CARDS GRID -->
+      <div class="shop-product-grid">
+        <% products.forEach(p => { %>
+          <article class="shop-card">
+            <div class="shop-card-img-wrap">
+              <img
+                src="/images/<%= p.image %>"
+                alt="<%= p.name %>"
+                class="shop-card-img">
+
+              <button class="shop-card-like" type="button">♡</button>
+              <span class="shop-card-tag">New</span>
+            </div>
+
+            <div class="shop-card-body">
+              <h3 class="shop-card-title"><%= p.name %></h3>
+
+              <div class="shop-card-meta">
+                <span class="shop-card-rating">★★★★☆</span>
+                <span class="shop-card-reviews">(32)</span>
+              </div>
+
+              <div class="shop-card-bottom">
+                <span class="shop-card-price">$<%= p.price %></span>
+                <div class="shop-card-actions">
+                  <form action="/orders/new" method="get">
+                    <input type="hidden" name="productId" value="<%= p.id %>">
+                    <button class="btn-outline-small" type="submit">Buy Now</button>
+                  </form>
+                  <button
+                    class="btn-primary-small"
+                    type="button"
+                    onclick="handleAddToCart('<%= p.name %>')">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+
+      <!-- SIMPLE PAGINATION (STATIC) -->
+      <div class="shop-pagination">
+        <button class="page-btn disabled" type="button">Prev</button>
+        <button class="page-btn page-btn-active" type="button">1</button>
+        <button class="page-btn" type="button">2</button>
+        <button class="page-btn" type="button">3</button>
+        <button class="page-btn" type="button">Next</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RECOMMENDATIONS SECTION -->
+  <section class="shop-recommend">
+    <div class="shop-recommend-header">
+      <h2>Explore our recommendations</h2>
+      <div class="shop-recommend-nav">
+        <button class="circle-btn" type="button">‹</button>
+        <button class="circle-btn" type="button">›</button>
+      </div>
+    </div>
+
+    <div class="shop-recommend-grid">
+      <% products.slice(0, 3).forEach(p => { %>
+        <article class="recommend-card">
+          <div class="recommend-img-wrap">
+            <img
+              src="/images/<%= p.image %>"
+              alt="<%= p.name %>"
+              class="recommend-img">
+          </div>
+          <div class="recommend-body">
+            <p class="recommend-tag">Featured</p>
+            <h3 class="recommend-title"><%= p.name %></h3>
+            <p class="recommend-price">$<%= p.price %></p>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="shop-cta">
+    <div class="shop-cta-inner">
+      <div>
+        <h2>Ready to Get Our New Stuff?</h2>
+        <p>Stay updated with the latest devices and exclusive offers from OakTech.</p>
+      </div>
+      <form class="shop-cta-form">
+        <input type="email" placeholder="Your email" required>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="shop-footer">
+    <div class="footer-columns">
+      <div class="footer-col">
+        <h4>About</h4>
+        <a href="#">Blog</a>
+        <a href="#">Meet The Team</a>
+        <a href="#">Contact Us</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Shipping</a>
+        <a href="#">Return</a>
+        <a href="#">FAQ</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Social Media</h4>
+        <div class="footer-social">
+          <span>●</span><span>●</span><span>●</span><span>●</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© OakTech Store. All rights reserved.</span>
+      <span>Terms of Service · Privacy Policy</span>
+    </div>
+  </footer>
+
+</div>

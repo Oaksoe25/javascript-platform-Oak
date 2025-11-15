@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <%- include('../partials/head.ejs') %>
-    <title><%= title %> • Simple Store</title>
-  </head>
-  <body class="container">
-    <%- include('../partials/nav.ejs') %>
+<head>
+  <%- include('../partials/head') %>
+</head>
 
-    <main class="content">
-      <%- body %>
-    </main>
+<body>
 
-    <script src="/js/app.js"></script>
-  </body>
+  <!-- TOP BAR -->
+  <header class="site-header">
+    <div class="container header-flex">
+      <div class="header-left">
+        <a href="/products" class="brand">
+          <img src="/images/logo.png" class="brand-logo" alt="OakTech Logo">
+          <span class="brand-text">OakTech Store</span>
+        </a>
+      </div>
+      
+      <nav class="header-nav">
+        <%- include('../partials/nav') %>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN PAGE CONTENT -->
+  <main class="container page-content">
+    <%- body %>
+  </main>
+
+</body>
 </html>
