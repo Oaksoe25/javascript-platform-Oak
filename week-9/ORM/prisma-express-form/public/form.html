@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — Project</title>
+  <link rel="stylesheet" href="/style.css"> 
+</head>
+
+<body>
+
+<div class="wrapper">
+
+  <div class="card">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+      <div class="image-box">
+        <img src="/hero.jpg" alt="Hero Image">
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+      <h2>Sign Up</h2>
+      <p class="subtitle">Unlock your world.</p>
+
+      <form class="form" action="/submit" method="POST" onsubmit="return showSuccess(event)">
+        
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>First name</label>
+        <input type="text" name="firstName" placeholder="Enter first name" required>
+
+        <label>Last name</label>
+        <input type="text" name="lastName" placeholder="Enter last name">
+
+        <button class="btn primary" type="submit">Sign Up</button>
+
+        <button class="btn ghost" type="button">Create an account</button>
+
+      </form>
+
+      <div id="msg"></div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+function showSuccess(e){
+  e.preventDefault();
+
+  const msg = document.getElementById("msg");
+  msg.innerHTML = `<p class="success">Your account has been created! 🎉</p>`;
+
+  // send to server
+  const formData = new FormData(e.target);
+
+  fetch('/submit', {
+    method: 'POST',
+    body: formData
+  });
+
+  return false;
+}
+</script>
+
+</body>
+</html>
