@@ -1,0 +1,124 @@
+/* CENTER BRAND SECTION */
+.brand-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0 15px 0;
+}
+
+/* BRAND */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* LOGO IMAGE */
+.logo-img {
+  width: 55px;
+  height: auto;
+}
+
+/* IF USING EMOJI */
+.logo-emoji {
+  font-size: 52px;
+}
+
+/* TITLE */
+.title {
+  font-size: 52px;        /* BIG */
+  font-weight: 800;       /* PREMIUM */
+  letter-spacing: 1px;
+}
+
+/* SEARCH */
+.search-box {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-box input {
+  width: 320px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.search-box button {
+  padding: 10px 18px;
+  font-weight: bold;
+}
+/* CENTER TOP SECTION */
+.top-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0 20px 0;
+}
+
+/* BIG BRAND TITLE */
+.brand-title {
+  font-size: 52px;      /* BIG */
+  font-weight: 800;     /* PREMIUM */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* LOGO SIZE */
+.brand-title .logo {
+  font-size: 56px;
+}
+
+/* SEARCH (MOVED UNDER TITLE) */
+.search-box {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.search-box input {
+  width: 320px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.search-box button {
+  padding: 10px 18px;
+  font-weight: bold;
+}
+.brand-title {
+  color: #e50914;
+}
+/* MOVIE GRID (SIDE BY SIDE) */
+#movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+  padding: 30px 50px;
+}
+
+/* MOVIE CARD */
+.movie {
+  transition: transform 0.3s ease;
+}
+
+.movie img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.movie p {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.movie:hover {
+  transform: scale(1.08);
+}
+.home-hint {
+  font-size: 13px;
+  color: #777;
+  margin-top: 5px;
+}

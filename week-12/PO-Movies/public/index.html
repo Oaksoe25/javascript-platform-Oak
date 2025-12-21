@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PO Movies</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP BRAND SECTION -->
+  <div class="top-center">
+    <h1 class="brand-title" onclick="goHome()" title="Go to Home">
+      <span class="logo">🎬</span>
+      PO Movies
+    </h1>
+    <p class="home-hint">(Click logo to go back to Home)</p>
+
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search movies..."
+      />
+      <button onclick="searchMovie()">Search</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- MOVIE GRID -->
+  <div id="movies"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
