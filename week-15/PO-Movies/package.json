@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "start": "npx prisma migrate deploy && node src/server.js",
     "dev": "nodemon src/server.js"
-  },
-  "prisma": {
-    "seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@prisma/client": "^6.19.2",
-    "axios": "^1.13.2",
+    "axios": "^1.3.2",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -18,8 +16,5 @@
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
     "prisma": "^6.19.2"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.11"
   }
 }
