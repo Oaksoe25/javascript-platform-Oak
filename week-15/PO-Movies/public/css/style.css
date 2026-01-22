@@ -1,0 +1,511 @@
+body {
+  margin: 0;
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  background: black;
+  gap: 20px;
+}
+
+.logo {
+  color: #e50914;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.navbar input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+}
+
+.nav-actions button {
+  margin-left: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+/* ===============================
+   NETFLIX TOP NAV TABS
+================================ */
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 30px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0.4));
+  position: sticky;
+  top: 0;
+  z-index: 90;
+}
+
+.nav-tab {
+  background: transparent;
+  border: none;
+  color: #ddd;
+  font-size: 15px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.nav-tab:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+.nav-tab.active {
+  background: rgba(255,255,255,0.25);
+  color: white;
+}
+
+.nav-select {
+  margin-left: auto;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.nav-select option {
+  background: #111;
+  color: white;
+}
+
+/* ===== DASHBOARD HERO (CRISP & NETFLIX-LIKE) ===== */
+#hero {
+  position: relative;
+  height: 50vh;
+  max-height: 520px;
+  min-height: 360px;
+  display: flex;
+  align-items: flex-end;
+  padding: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
+}
+
+/* Reduce blur overlay */
+#hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.9) 20%,
+    rgba(0,0,0,0.3) 60%,
+    rgba(0,0,0,0.15) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  max-width: 480px;  /* ⬅️ prevents text spreading too wide */
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 42px;   /* ⬅️ smaller than before */
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 15px;
+  line-height: 1.5;
+  color: #ddd;
+}
+.hero-content button {
+  margin-top: 14px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+@media (max-width: 768px) {
+  #hero {
+    height: 300px;
+    padding: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 28px;
+  }
+
+  .hero-content p {
+    font-size: 14px;
+  }
+}
+
+
+/* ===== ROWS ===== */
+.row {
+  margin: 30px 0 10px 0;
+  padding-left: 30px;
+}
+
+.row h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.row-posters {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.row-posters::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ===== MOVIE CARD (PREMIUM) ===== */
+.movie-card {
+  min-width: 180px;
+  height: 270px;
+  background: #181818;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-card:hover {
+  transform: translateY(-6px) scale(1.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  z-index: 20;
+}
+.movie-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.4),
+    transparent
+  );
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 12px;
+  transition: opacity 0.25s ease;
+}
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+.movie-info h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.movie-info button {
+  font-size: 13px;
+  padding: 6px 10px;
+  margin-top: 6px;
+}
+
+
+/* ADMIN OVERLAY */
+.admin-actions {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  text-align: center;
+}
+
+.movie-card:hover .admin-actions {
+  display: block;
+}
+
+.admin-actions button {
+  margin: 5px;
+}
+/* =========================
+   NETFLIX-STYLE LOGIN
+========================= */
+
+.login-body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(0,0,0,0.75),
+      rgba(0,0,0,0.75)
+    ),
+    url("https://assets.nflxext.com/ffe/siteui/vlv3/9f1d0e9c-1a07-4a9f-96a0-6a19e31d3d5d/6f0c7d89-7e51-4a1a-9d1b-9f26c91cbb52/MM-en-20240122-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.login-header {
+  padding: 20px 40px;
+}
+
+.brand {
+  color: #e50914;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.login-container {
+  background: rgba(0,0,0,0.75);
+  width: 350px;
+  padding: 40px;
+  margin: 60px auto;
+  border-radius: 6px;
+}
+
+.login-container h2 {
+  margin-bottom: 20px;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background: #333;
+  border: none;
+  color: white;
+  border-radius: 4px;
+}
+
+.login-container input::placeholder {
+  color: #aaa;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #e50914;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.login-btn:hover {
+  background: #f6121d;
+}
+
+.error-text {
+  color: #e87c03;
+  margin-top: 10px;
+}
+
+.help-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.help-text a {
+  color: white;
+  text-decoration: none;
+}
+
+.help-text a:hover {
+  text-decoration: underline;
+}
+/* =========================
+   CLICK & INTERACTION FIX
+========================= */
+
+/* Make entire card clickable */
+.movie-card {
+  cursor: pointer;
+}
+
+/* Ensure links & buttons are clickable */
+.movie-card a,
+.movie-card button {
+  position: relative;
+  z-index: 5;
+  pointer-events: auto;
+}
+
+/* Prevent admin overlay from blocking clicks */
+.admin-actions {
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* Prevent hover scale from covering neighbors */
+.movie-card:hover {
+  z-index: 20;
+}
+/* =========================
+   PLAY ICON OVERLAY
+========================= */
+
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.movie-card:hover .play-overlay {
+  opacity: 1;
+}
+/* =========================
+   DESCRIPTION TOGGLE
+========================= */
+
+.description {
+  font-size: 13px;
+  line-height: 1.4;
+  max-height: 40px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.description.expanded {
+  max-height: 200px;
+}
+
+.read-more {
+  color: #e50914;
+  cursor: pointer;
+  font-size: 12px;
+}
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+}
+
+  .navbar input {
+    width: 100%;
+  }
+
+  #hero {
+    height: 300px;
+    padding: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 32px;
+  }
+
+  .row-posters {
+    gap: 10px;
+  }
+
+  .movie-card {
+    min-width: 140px;
+  }
+
+  .movie-card img {
+    height: 200px;
+  }
+}
+
+/* ================================
+   FAVORITES – NETFLIX GRID (FINAL)
+================================ */
+
+body.favorites-page .favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  padding: 30px 40px;
+}
+
+body.favorites-page .favorite-card {
+  background: #141414;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+body.favorites-page .fav-poster {
+  position: relative;
+  height: 270px;
+  cursor: pointer;
+}
+
+body.favorites-page .fav-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body.favorites-page .play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+body.favorites-page .fav-poster:hover .play-overlay {
+  opacity: 1;
+}
+
+body.favorites-page .fav-info {
+  padding: 10px;
+  text-align: center;
+}
+
+body.favorites-page .fav-info h3 {
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+body.favorites-page .fav-info button {
+  width: 100%;
+  background: #e50914;
+  border: none;
+  color: white;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
